@@ -53,3 +53,25 @@ Use the project in [tp3-date](../code/tp3-date) to complete this exercise.
 
 ## Answer
 
+1. Methods: Date, isValidDate, previousDate, nextDate
+They have the same *Input Space Partitioning* because they use the same attributes in the same way.
+
+| characteristics | blocks |                                           |             |
+| --------------- | ------ | ----------------------------------------- | ----------- |
+| day             | <=0    | [1;MAX_DAY]                               | \>= MAX_DAY |
+| month           | < 1    | [1;12]                                    | \> 12       |
+| year            | < 0    | leap year                                 | other       |
+
+Method isLeapYear only uses the year.
+
+| characteristics | blocks |                                           |             |
+| --------------- | ------ | ----------------------------------------- | ----------- |
+| year            | < 0    | leap year                                 | other       |
+
+Method compareTo (uses all attributes but in a different way than the other methods).
+
+| characteristics     | blocks |           |      |
+| ------------------- | ------ | --------- | ---- |
+| day - other.day     | < 0    | \= 0      | \> 0 |
+| month - other.month | < 0    | \= 0      | \> 0 |
+| year - other.year   | < 0    | \= 0      | \> 0 |
