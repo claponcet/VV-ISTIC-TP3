@@ -28,7 +28,7 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 1. We partinioned the possible inputs in the following blocks, assuming that the string only contains grouping symbols:
 
-| Charactiristics                                                      | Blocks                               |
+| Charactiristics                                                      | Blocks            |                  |
 |----------------------------------------------------------------------|-------------------|------------------|
 | null                                                                 | exception                            |
 | empty                                                                | balanced                             |
