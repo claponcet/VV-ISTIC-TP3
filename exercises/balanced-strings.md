@@ -26,3 +26,32 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. We partinioned the possible inputs in the following blocks, assuming that the string only contains grouping symbols:
+
+| Charactiristics                                                      | Blocks                               |
+|                                                                      | yes               | no               |
+|----------------------------------------------------------------------|-------------------|------------------|
+| null                                                                 | exception                            |
+| empty                                                                | balanced                             |
+| equal number of opening and closing grouping symbols of each kind    | yes -> undecided  | no -> unbalanced |
+| string starts with closing grouping symbol                           | yes -> unbalanced | no -> undecided  |
+| string ends with opening grouping symbol                             | yes -> unbalanced | no -> undecided  |
+| string contains a balanced string inside each pair of grouping symbol| yes -> balanced   | no -> unbalanced |
+| string is a sequence of balanced strings (0 or more)                 | yes -> balanced   | no -> unbalanced |
+| string is "()" or "[]" or "{}"                                       | yes -> balanced   | no -> unbalanced |
+
+We combined the characteristics when they are undecided to obtain inputs covering all cases. Here are our inputs:
+```java
+static String NULL = null;
+static String EMPTY = "";
+static String UNEQUAL = "(([{}])";
+static String EQUAL_BALANCED = "([{}])"; // covers EQUAL_CONTAINS_BALANCED, EQUAL_STARTS_WITH_OPENING, EQUAL_ENDS_WITH_CLOSING
+static String EQUAL_UNBALANCED = "([{}(]))"; // covers EQUAL_CONTAINS_UNBALANCED
+static String EQUAL_STARTS_WITH_CLOSING = ")({[]}"; // covers SEQUENCE_STARTS_WITH_CLOSING
+static String EQUAL_ENDS_WITH_OPENING = "[]{})("; // covers SEQUENCE_ENDS_WITH_OPENING
+static String SEQUENCE_BALANCED = "([{}])({[]})"; // covers SEQUENCE_CONTAINS_BALANCED, SEQUENCE_STARTS_WITH_OPENING, SEQUENCE_ENDS_WITH_CLOSING
+static String SEQUENCE_UNBALANCED = "()(][)"; // covers SEQUENCE_CONTAINS_UNBALANCED
+```
+
+
+
