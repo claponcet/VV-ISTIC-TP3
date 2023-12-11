@@ -52,5 +52,54 @@ static String SEQUENCE_BALANCED = "([{}])({[]})"; // covers SEQUENCE_CONTAINS_BA
 static String SEQUENCE_UNBALANCED = "()(][)"; // covers SEQUENCE_CONTAINS_UNBALANCED
 ```
 
+2. Our coverage was 100% after the tests with the inputs above.
+
+3. This does not apply to our code as the only predicate with more than two booleans only has exclusive cases. If the first boolean is true, it means the other two are false and respectively.
+
+4. Here is the result of the first run of PIT on our project:
+
+```
+================================================================================
+- Mutators
+================================================================================
+> org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator
+>> Generated 2 Killed 2 (100%)
+> KILLED 2 SURVIVED 0 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 0 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanFalseReturnValsMutator
+>> Generated 4 Killed 4 (100%)
+> KILLED 4 SURVIVED 0 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 0 
+--------------------------------------------------------------------------------
+> org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator
+>> Generated 12 Killed 12 (100%)
+> KILLED 12 SURVIVED 0 TIMED_OUT 0 NON_VIABLE 0 
+> MEMORY_ERROR 0 NOT_STARTED 0 STARTED 0 RUN_ERROR 0 
+> NO_COVERAGE 0 
+--------------------------------------------------------------------------------
+================================================================================
+- Timings
+================================================================================
+> pre-scan for mutations : < 1 second
+> scan classpath : < 1 second
+> coverage and dependency analysis : < 1 second
+> build mutation tests : < 1 second
+> run mutation analysis : 1 seconds
+--------------------------------------------------------------------------------
+> Total  : 2 seconds
+--------------------------------------------------------------------------------
+================================================================================
+- Statistics
+================================================================================
+>> Line Coverage (for mutated classes only): 16/17 (94%)
+>> Generated 18 mutations Killed 18 (100%)
+>> Mutations with no coverage 0. Test strength 100%
+>> Ran 52 tests (2.89 tests per mutation)
+```
+
+The only line not covered is the StringUtils constructor. It cannot be covered by PIT because there is no corresponding mutation operator.
 
 
